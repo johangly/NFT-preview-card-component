@@ -1,0 +1,120 @@
+@use "reset";
+@use "extensions";
+@use "functions" as func;
+@use "variables" as var;
+.main .card * {
+    font-family: var.$font-outfit;
+    color: var.$white;
+}
+
+.main {
+    width: 100%;
+    background-color: var.$vd-blue-1;
+    min-height: 100vh;
+    @extend %align-center;
+    .card {
+        max-width: 340px;
+        border-radius: func.convert(10);
+        padding: func.convert(20);
+        background-color: var.$vd-blue-2;
+        margin: 10px;
+        &__title,
+        .img__container,
+        &__stats,
+        &__p {
+            margin-bottom: func.convert(20);
+            text-transform: capitalize;
+        }
+        &__title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: 200ms ease all;
+            &:hover {
+                color: var.$cyan;
+            }
+        }
+        .img__container {
+            position: relative;
+            overflow: hidden;
+            @extend %align-center;
+            .card__img {
+                border-radius: func.convert(10);
+            }
+            .view__img {
+                z-index: 10;
+                opacity: 0;
+                position: absolute;
+                transition: 200ms ease all;
+            }
+            &::after {
+                content: '';
+                transition: 200ms ease all;
+                min-width: 100%;
+                height: 100%;
+                opacity: 0;
+                border-radius: func.convert(10);
+                position: absolute;
+                background-color: #00fff786;
+            }
+            &:hover::after,
+            &:hover .view__img {
+                opacity: 1;
+            }
+        }
+        &__p {
+            font-size: 1rem;
+            color: var.$s-blue;
+            font-weight: 300;
+        }
+        &__stats {
+            @extend %align-center;
+            justify-content: space-between;
+            .card__value {
+                @extend %align-center;
+                font-size: .9rem;
+                text-transform: uppercase;
+                color: var.$cyan;
+                font-weight: 600;
+                .value__img {
+                    margin-right: func.convert(7);
+                }
+            }
+            .card__time {
+                @extend %align-center;
+                font-size: .9rem;
+                text-transform: lowercase;
+                color: var.$s-blue;
+                .time__img {
+                    margin-right: func.convert(7);
+                }
+            }
+        }
+        hr {
+            border-bottom: .1px solid var.$vd-blue-3;
+            margin-bottom: func.convert(15);
+        }
+        &__profile {
+            @extend %align-center;
+            margin-bottom: func.convert(8);
+            justify-content: flex-start;
+            .profile__img {
+                width: 35px;
+                border: 1px solid var.$white;
+                border-radius: 50%;
+                margin-right: func.convert(10);
+            }
+            p {
+                font-size: .9rem;
+                color: var.$s-blue;
+                @extend %first-letter;
+                .profile__name {
+                    text-transform: capitalize;
+                    transition: 200ms ease all;
+                    &:hover {
+                        color: var.$cyan;
+                    }
+                }
+            }
+        }
+    }
+}
